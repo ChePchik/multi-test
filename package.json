@@ -1,0 +1,9 @@
+{
+	"name": "multi-test",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"client": "npm run start --prefix client",
+		"server": "npm run server --prefix server"
+	}
+}

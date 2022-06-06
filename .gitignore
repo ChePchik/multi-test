@@ -1,0 +1,16 @@
+node_modules
+.env
+*.log
+error.log
+info.log
+env
+build
+cli
+copy.jsx
+public\bundle.js.map
+public\bundle.js
+bundle.js.map
+bundle.js
+bundle.*
+bundle
+temp
