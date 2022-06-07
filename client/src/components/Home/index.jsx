@@ -15,8 +15,13 @@ import {
 	Typography,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/StarBorder";
+import { logoutUser } from "../../redux/actions/authActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
+	const dispatch = useDispatch();
+	const user = useSelector((state) => state.user.currentUser);
+
 	const tiers = [
 		{
 			title: "Тест на знание информатики",
@@ -63,8 +68,13 @@ export default function Home() {
 							Личный кабинет
 						</Link>
 					</nav>
-					<Button href='#' variant='outlined' sx={{ my: 1, mx: 1.5 }}>
-						Авторизоваться
+					<Button
+						href='#'
+						variant='outlined'
+						sx={{ my: 1, mx: 1.5 }}
+						onClick={() => dispatch(logoutUser())}
+					>
+						Выйти
 					</Button>
 				</Toolbar>
 			</AppBar>

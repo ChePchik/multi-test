@@ -9,7 +9,7 @@ const database = require("../api/database");
 const isEmpty = require("is-empty");
 
 //  * @route POST api/auth/hello
-router.get("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
 	const { FirstName, LastName, Email, Password } = req.body;
 
 	if (isEmpty(FirstName) || isEmpty(LastName) || isEmpty(Email) || isEmpty(Password))
@@ -53,7 +53,7 @@ router.get("/register", async (req, res) => {
 });
 
 //  * @route POST api/auth/login
-router.get("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
 	const { Email, Password } = req.body;
 
 	if (isEmpty(Email) || isEmpty(Password))

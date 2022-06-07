@@ -3,12 +3,13 @@ import setAuthToken from "../../utility/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { ADD_USER, GET_ERRORS, SET_CURRENT_USER } from "./types";
 import { toastErrors } from "./errorAction.jsx";
+import { url } from "./variable";
 
 export const registerUser =
 	(userData, another = true) =>
 	(dispatch) => {
 		axios
-			.post("/api/auth/register", userData)
+			.post(url + "/api/auth/register", userData)
 			.then((res) => {
 				// re-direct to login on successful register
 				// let navigate = useNavigate();
@@ -30,7 +31,7 @@ export const registerUser =
 // Login - get user token
 export const loginUser = (userData) => (dispatch) => {
 	axios
-		.post("/api/auth/login", userData)
+		.post(url + "/api/auth/login", userData, { mode: "cors" })
 		.then((res) => {
 			// Save to localStorage
 			// Set token to localStorage

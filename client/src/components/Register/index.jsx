@@ -4,23 +4,44 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 // import Link from "@mui/material/Link";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import drawerImage from "../../images/bg-login.jpg";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../redux/actions/authActions";
 
 export default function Register() {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const auth = useSelector((state) => state.auth);
+
+	useEffect(() => {
+		if (auth.isAuthenticated) {
+			navigate("/");
+		}
+	}, []);
+	useEffect(() => {
+		if (auth.isAuthenticated) {
+			navigate("/");
+		}
+	}, [auth]);
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
-			lastName: data.get("lastName"),
-			firstName: data.get("firstName"),
-		});
+
+		const newUser = {
+			Email: data.get("email"),
+			Password: data.get("password"),
+			LastName: data.get("lastName"),
+			FirstName: data.get("firstName"),
+		};
+
+		dispatch(registerUser(newUser), navigate);
 	};
 
 	return (

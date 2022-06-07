@@ -4,22 +4,46 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 // import Link from "@mui/material/Link";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import drawerImage from "../../images/bg-login.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../redux/actions/authActions";
+import { useEffect } from "react";
 
 export default function Login() {
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
-		});
+	// const [email, setEmail] = useState("");
+	// const [password, setPassword] = useState("");
+	const auth = useSelector((state) => state.auth);
+	const errors = useSelector((state) => state.errors);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (auth.isAuthenticated) {
+			navigate("/");
+		}
+	}, []);
+	useEffect(() => {
+		if (auth.isAuthenticated) {
+			navigate("/");
+		}
+	}, [auth]);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const data = new FormData(e.currentTarget);
+
+		const userData = {
+			Email: data.get("email"),
+			Password: data.get("password"),
+		};
+		// console.log(userData);
+		dispatch(loginUser(userData));
 	};
 
 	return (

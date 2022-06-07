@@ -1,11 +1,10 @@
 const sql = require("mssql");
 
-let dbConn = null;
 const config = {
-	user: "SA",
-	password: "RK6qWx_rk",
-	server: "localhost",
-	database: "test",
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	server: process.env.DB_SERVER,
+	database: process.env.DB_NAME,
 	port: 1433,
 	extra: {
 		trustServerCertificate: true,

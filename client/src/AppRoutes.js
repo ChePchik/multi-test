@@ -1,6 +1,6 @@
 import React, { Component, Suspense, lazy } from "react";
 import { useRoutes } from "react-router-dom";
-// import PrivateRoute from "./components/private-route/PrivateRoute";
+import PrivateRoute from "./components/Private/PrivateRoute";
 
 const Home = lazy(() => import("./components/Home"));
 const Register = lazy(() => import("./components/Register"));
@@ -20,7 +20,7 @@ export default function AppRoutes() {
 	let routes = useRoutes([
 		{
 			path: "/",
-			element: <Home />,
+			element: <PrivateRoute component={Home} />,
 		},
 		{
 			path: "register",
