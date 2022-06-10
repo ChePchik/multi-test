@@ -1,5 +1,7 @@
 import React, { Component, Suspense, lazy } from "react";
 import { useRoutes } from "react-router-dom";
+import Main from "./components/Answer/Main";
+import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./components/Private/PrivateRoute";
 
 const Home = lazy(() => import("./components/Home"));
@@ -19,10 +21,6 @@ const NotFound = () => {
 export default function AppRoutes() {
 	let routes = useRoutes([
 		{
-			path: "/",
-			element: <PrivateRoute component={Home} />,
-		},
-		{
 			path: "register",
 			element: <Register />,
 		},
@@ -30,7 +28,20 @@ export default function AppRoutes() {
 			path: "login",
 			element: <Login />,
 		},
-
+		{
+			path: "/",
+			element: <PrivateRoute component={Dashboard} />,
+			children: [
+				{
+					path: "/",
+					element: <PrivateRoute component={Home} />,
+				},
+				{
+					path: ":id",
+					element: <Main />,
+				},
+			],
+		},
 		{ path: "*", element: <NotFound /> },
 	]);
 	return routes;

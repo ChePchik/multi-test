@@ -21,24 +21,29 @@ import { useDispatch, useSelector } from "react-redux";
 export default function Home() {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user.currentUser);
+	// const tiers = useSelector((state) => state.user.currentUser);
+
+	// useEffect(() => {
+	// 	dispatch(loadTest());
+	// }, []);
 
 	const tiers = [
 		{
+			id: 1,
 			title: "Тест на знание информатики",
-			description: ["10 вопросов", "20 минут ", "Для школьников средних классов"],
-			buttonText: "Начать",
+			description: ["10 вопросов", "10 минут ", "Для школьников средних классов"],
 			buttonVariant: "outlined",
 		},
 		{
-			title: "Викторина на знание сказок",
-			description: ["50 вопросов", "30 минут времени", "Для детей дошкольного возраста"],
-			buttonText: "Начать",
+			id: 2,
+			title: "Викторина по стилям и дизайну",
+			description: ["30 вопросов", "30 минут времени", "Для студентов старших и млаших курсов"],
 			buttonVariant: "outlined",
 		},
 		{
-			title: "Тестирование по биологии",
+			id: 3,
+			title: "Тест по программированию",
 			description: ["50 вопросов", "1 час", "Для школьников старшего класса"],
-			buttonText: "Начать",
 			buttonVariant: "outlined",
 		},
 	];
@@ -53,25 +58,40 @@ export default function Home() {
 				elevation={0}
 				sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
 			>
-				<Toolbar sx={{ flexWrap: "wrap" }}>
-					<Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
+				<Toolbar sx={{ flexWrap: "wrap", backgroundColor: "#0094da" }}>
+					<Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1, color: "white" }}>
 						Rhf
 					</Typography>
 					<nav>
-						<Link variant='button' color='text.primary' href='#' sx={{ my: 1, mx: 1.5 }}>
+						<Link
+							variant='button'
+							color='text.primary'
+							href='#'
+							sx={{ my: 1, mx: 1.5, color: "white" }}
+						>
 							Создание теста
 						</Link>
-						<Link variant='button' color='text.primary' href='#' sx={{ my: 1, mx: 1.5 }}>
+						<Link
+							variant='button'
+							color='text.primary'
+							href='#'
+							sx={{ my: 1, mx: 1.5, color: "white" }}
+						>
 							Статистика
 						</Link>
-						<Link variant='button' color='text.primary' href='#' sx={{ my: 1, mx: 1.5 }}>
+						<Link
+							variant='button'
+							color='text.primary'
+							href='#'
+							sx={{ my: 1, mx: 1.5, color: "white" }}
+						>
 							Личный кабинет
 						</Link>
 					</nav>
 					<Button
 						href='#'
 						variant='outlined'
-						sx={{ my: 1, mx: 1.5 }}
+						sx={{ my: 1, mx: 1.5, color: "black" }}
 						onClick={() => dispatch(logoutUser())}
 					>
 						Выйти
@@ -105,10 +125,7 @@ export default function Home() {
 										align: "center",
 									}}
 									sx={{
-										backgroundColor: (theme) =>
-											theme.palette.mode === "light"
-												? theme.palette.grey[200]
-												: theme.palette.grey[700],
+										backgroundColor: "#0094da",
 									}}
 								/>
 								<CardContent>
@@ -129,8 +146,8 @@ export default function Home() {
 									</ul>
 								</CardContent>
 								<CardActions>
-									<Button fullWidth variant={tier.buttonVariant}>
-										{tier.buttonText}
+									<Button fullWidth variant={tier.buttonVariant} href={tier.id}>
+										Начать
 									</Button>
 								</CardActions>
 							</Card>
