@@ -10,16 +10,16 @@ const port = process.env.PORT || 3003;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.disable("x-powered-by");
-app.use(helmet());
+// app.use(helmet());
 
 // Routes
 app.use("/api/auth", auth);
 
-// app.use(express.static("client/build"));
+app.use(express.static("client/build"));
 
-// app.get("*", (req, res) => {
-// 	res.sendFile(path.resolve(__dirname, "../", "client", "build", "index.html"));
-// });
+app.get("*", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "../", "client", "build", "index.html"));
+});
 app.options("*", cors());
 app.use(
 	cors({
